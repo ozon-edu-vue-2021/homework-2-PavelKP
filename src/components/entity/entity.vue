@@ -1,13 +1,14 @@
 <template>
-	<div>
+	<ul class="list">
 		<file
 			v-for="item in contents" 
 			:key="item.name" 
 			:fileName="item.name"
 			:contents="item.contents"
 			:type="item.type"
+			:level="level"
 		/>
-	</div>
+	</ul>
 </template>
 
 <script>
@@ -20,9 +21,21 @@ export default {
 	},
   props: {
     fileName: String,
-		indent: String,
+		level: Number,
 		contents: Array,
+		type: String,
   }
 }
 </script>
+
+<style scoped>
+	.list {
+		margin: 0;
+		/* margin-left: 20px; */
+    padding: 0;
+
+    list-style: none;
+		text-align: left;
+	}
+</style>
 

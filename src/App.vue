@@ -2,7 +2,8 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
 		<entity 
-			:contents="firstLevel"
+			:contents="this.$options.firstLevel"
+			:level="0"
 		/>
   </div>
 </template>
@@ -16,15 +17,13 @@ export default {
   components: {
     entity
   },
-	data: function() {
-		return {
-			firstLevel: [structure.contents[0].contents[0]],
-		}
+	created() {
+		this.$options.firstLevel = [structure];
 	},
 	mounted() {
 		const test = structure.contents[0].contents[0];
 		console.log(test);
-		this.openFolder([test]); // [structure]
+		// this.openFolder([test]); // [structure]
 	},
 	methods: {
 		openFolder(item, level=0) {
@@ -42,12 +41,24 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+	#app {
+		font-family: Avenir, Helvetica, Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-align: center;
+		color: #2c3e50;
+		margin-top: 60px;
+		box-sizing: border-box;
+	}
+
+	.visually-hidden {
+		position: absolute !important;
+		clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+		clip: rect(1px, 1px, 1px, 1px);
+		padding:0 !important;
+		border:0 !important;
+		height: 1px !important; 
+		width: 1px !important; 
+		overflow: hidden;
+	}
 </style>
