@@ -1,7 +1,7 @@
 <template>
   <li>
 		<label class="row" :style="getIndent()">
-			<input type="radio" name="pressed" class="row-input visually-hidden" @click="changeVisibility"/>
+			<input type="radio" name="pressed" class="row-input visually-hidden" @click="onClick" @keydown="onKeyDown"/>
 			{{type === 'directory' ? 'directory' : 'file'}} {{fileName}}
 			<div class="row-style"></div>
 		</label>
@@ -22,8 +22,11 @@ export default {
 		}
 	},
 	methods: {
-		changeVisibility() {
+		onClick() {
 			this.isShown = !this.isShown;
+		},
+		onKeyDown(evt) {
+			evt.preventDefault();
 		},
 		getIndent() {
 			console.log(1)
@@ -60,10 +63,16 @@ export default {
 		z-index: -1;
 	}
 
+	.row:hover .row-style {
+		background-color: #e5f3ff;
+	}
+
 	.row-input:checked + .row-style {
 		background-color: #cce8ff;
 		border: 1px solid #99d1ff;
 	}
+
+
 
 </style>
 
