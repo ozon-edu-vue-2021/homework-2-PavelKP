@@ -19,11 +19,6 @@ export default {
 	created() {
 		this.$options.firstLevel = [structure];
 	},
-	mounted() {
-		const test = structure.contents[0].contents[0];
-		console.log(test);
-		// this.openFolder([test]); // [structure]
-	},
 }
 </script>
 

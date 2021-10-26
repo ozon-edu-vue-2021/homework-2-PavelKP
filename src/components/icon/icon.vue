@@ -33,13 +33,17 @@ export default {
 		background-repeat: no-repeat;
     background-position: center;
 	}
-
 	.folder {
 		background-image: url('~@/assets/folder.svg');
 	}
-
 	.folder-opened {
 		background-image: url('~@/assets/folder-opened.svg');
+	}
+	.file {
+		background-image: url('~@/assets/file.svg');
+	}
+	.link {
+		background-image: url('~@/assets/link.svg');
 	}
 </style>
 

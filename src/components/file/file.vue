@@ -2,11 +2,11 @@
   <li>
 		<label class="row" :style="getIndent()">
 			<icon :iconType="getIcon()" />
-			<input type="radio" name="pressed" class="row-input visually-hidden" @click="onClick" @keydown="onKeyDown"/>
-			{{type === 'directory' ? 'directory' : 'file'}} {{fileName}}
+			<input type="radio" name="pressed" class="row-input visually-hidden" @click="onClick" @keydown.prevent/>
+			<a :href="$props.target">{{fileName}} </a>
 			<div class="row-style"></div>
 		</label>
-		<entity v-if="isShown" :contents="contents" :level="this.$props.level + 1"/>
+		<entity v-if="isShown" :contents="contents" :level="$props.level + 1"/>
   </li>
 </template>
 
@@ -28,17 +28,18 @@ export default {
 		onClick() {
 			this.isShown = !this.isShown;
 		},
-		onKeyDown(evt) {  // Есть директива!!!! ????
-			evt.preventDefault();
-		},
 		getIndent() {
 			return `padding-left: ${20 * this.$props.level}px`
 		},
-		getIcon() { // Computed???
+		getIcon() {
 			if (this.$props.type === 'directory' && !this.isShown) {
 				return 'folder';
 			} else if (this.$props.type === 'directory' && this.isShown) {
 				return 'folder-opened';
+			} else if (this.$props.type === 'file') {
+				return 'file';
+			} else if (this.$props.type === 'link') {
+				return 'link';
 			}
 		},
 	},
@@ -47,6 +48,7 @@ export default {
 		level: Number,
 		contents: Array,
 		type: String,
+		target: String,
   }
 }
 </script>
@@ -54,15 +56,12 @@ export default {
 <style scoped>
 	.row {
 		display: flex;
-		/* padding-left: 2px; */
 		align-items: center;
 		position: relative;
 		width: 100%;
 		height: 25px;
-
 		cursor: pointer;
 	}
-
 	.row-style {
 		position: absolute;
 		left: 0;
@@ -71,17 +70,12 @@ export default {
 		bottom: 0;
 		z-index: -1;
 	}
-
 	.row:hover .row-style {
 		background-color: #e5f3ff;
 	}
-
-	.row-input:checked + .row-style {
+	.row-input:checked ~ .row-style {
 		background-color: #cce8ff;
 		border: 1px solid #99d1ff;
 	}
-
-
-
 </style>
 

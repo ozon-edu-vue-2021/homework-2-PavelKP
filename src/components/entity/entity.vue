@@ -6,6 +6,7 @@
 			:fileName="item.name"
 			:contents="item.contents"
 			:type="item.type"
+			:target="item.target"
 			:level="level"
 		/>
 	</ul>
@@ -20,10 +21,8 @@ export default {
 		file,
 	},
   props: {
-    fileName: String,
 		level: Number,
 		contents: Array,
-		type: String,
   }
 }
 </script>
@@ -31,9 +30,7 @@ export default {
 <style scoped>
 	.list {
 		margin: 0;
-		/* margin-left: 20px; */
     padding: 0;
-
     list-style: none;
 		text-align: left;
 	}
