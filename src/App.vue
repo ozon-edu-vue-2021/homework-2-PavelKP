@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
 		<entity 
 			:contents="this.$options.firstLevel"
 			:level="0"
@@ -25,18 +24,6 @@ export default {
 		console.log(test);
 		// this.openFolder([test]); // [structure]
 	},
-	methods: {
-		openFolder(item, level=0) {
-			item.forEach((innerItem) => {
-				if (innerItem.type === 'directory') {
-					console.log('--'.repeat(level) + innerItem.name);
-					this.openFolder(innerItem.contents, level+1);
-				} else {
-					console.log('--'.repeat(level) + innerItem.name);
-				}
-			})
-		}
-	}
 }
 </script>
 

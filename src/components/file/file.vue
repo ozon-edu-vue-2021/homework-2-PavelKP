@@ -1,6 +1,7 @@
 <template>
   <li>
 		<label class="row" :style="getIndent()">
+			<icon :iconType="getIcon()" />
 			<input type="radio" name="pressed" class="row-input visually-hidden" @click="onClick" @keydown="onKeyDown"/>
 			{{type === 'directory' ? 'directory' : 'file'}} {{fileName}}
 			<div class="row-style"></div>
@@ -10,11 +11,13 @@
 </template>
 
 <script>
+import icon from '../icon/icon.vue'
 
 export default {
   name: 'file',
 	components: {
 		entity: () => import('../entity/entity.vue'),
+		icon,
 	},
 	data: function() {
 		return {
@@ -25,12 +28,18 @@ export default {
 		onClick() {
 			this.isShown = !this.isShown;
 		},
-		onKeyDown(evt) {
+		onKeyDown(evt) {  // Есть директива!!!! ????
 			evt.preventDefault();
 		},
 		getIndent() {
-			console.log(1)
 			return `padding-left: ${20 * this.$props.level}px`
+		},
+		getIcon() { // Computed???
+			if (this.$props.type === 'directory' && !this.isShown) {
+				return 'folder';
+			} else if (this.$props.type === 'directory' && this.isShown) {
+				return 'folder-opened';
+			}
 		},
 	},
   props: {
