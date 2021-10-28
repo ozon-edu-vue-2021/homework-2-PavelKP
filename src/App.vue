@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-		<p>{{absolutePath}}</p>
 		<entity 
 			:contents="this.$options.firstLevel"
 			:level="0"
