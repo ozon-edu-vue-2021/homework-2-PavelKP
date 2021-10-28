@@ -41,7 +41,7 @@ export default {
         "--indent-multiplier": this.$props.level,
       };
     },
-		iconType() {
+    iconType() {
       if (this.$props.type === "directory" && !this.isShown) {
         return "folder";
       } else if (this.$props.type === "directory" && this.isShown) {
@@ -51,7 +51,7 @@ export default {
       } else if (this.$props.type === "link") {
         return "link";
       }
-			return 'file'
+      return "file";
     },
   },
   props: {
@@ -67,7 +67,7 @@ export default {
 <style scoped>
 .row {
   display: flex;
-	padding-left: calc(20px * var(--indent-multiplier));
+  padding-left: calc(20px * var(--indent-multiplier));
   align-items: center;
   position: relative;
   width: 100%;
