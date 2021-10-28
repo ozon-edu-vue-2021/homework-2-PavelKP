@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+		<p>{{absolutePath}}</p>
 		<entity 
 			:contents="this.$options.firstLevel"
 			:level="0"
@@ -19,6 +20,27 @@ export default {
 	created() {
 		this.$options.firstLevel = [structure];
 	},
+	data() {
+		return {
+			absolutePath: 'ddeded'
+		}
+	},
+	provide() {
+		const context = this;
+
+		const reactive = {};
+		Object.defineProperty(reactive, 'absolutePath', {
+			enumerable: true,
+			get() {
+				return context;
+			},
+			set(value) {
+				context.absolutePath = value;
+			},
+		});
+
+		return { reactive };
+	}
 }
 </script>
 

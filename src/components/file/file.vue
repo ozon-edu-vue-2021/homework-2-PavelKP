@@ -25,6 +25,7 @@ export default {
     entity: () => import("../entity/entity.vue"),
     icon,
   },
+	inject: ['reactive'],
   data() {
     return {
       isShown: false,
@@ -33,9 +34,7 @@ export default {
   methods: {
     onClick() {
       this.isShown = !this.isShown;
-    },
-    getIndent() {
-      return `padding-left: ${20 * this.$props.level}px`;
+			this.reactive.absolutePath = this.$props.fileName;
     },
   },
   computed: {
