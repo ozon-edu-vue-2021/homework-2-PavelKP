@@ -1,19 +1,22 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <entity :contents="this.$options.firstLevel" :level="0" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import structure from "../public/static/node_modules.json";
+import entity from "./components/entity/entity.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    entity,
+  },
+  created() {
+    this.$options.firstLevel = [structure];
+  },
+};
 </script>
 
 <style>
@@ -24,5 +27,17 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  box-sizing: border-box;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
 }
 </style>
